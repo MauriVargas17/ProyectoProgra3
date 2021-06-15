@@ -28,19 +28,19 @@ class RegisterPage() : AppCompatActivity() {
         //dbController.deleteAllUsers()
         initViews()
 
-        Toast.makeText(this, "${dbController.obtainAllUsers()}", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "${dbController.obtainAllUsers()}", Toast.LENGTH_LONG).show()
 
         registerButton?.setOnClickListener {
             if (name.text.toString() != "" && username.text.toString() != "" && password.text.toString() != ""){
                 if(dbController.createUser(username.text.toString(), password.text.toString(), name.text.toString())){
-                    Toast.makeText(this, "¡Usuario creado correctamente!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "User created successfully!", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, LoginPage::class.java)
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this, "¡Usuario existente!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "This user already exists!", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this, "¡Existen casillas vacías!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "There are empty fields!", Toast.LENGTH_SHORT).show()
             }
         }
 

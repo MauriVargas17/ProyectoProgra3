@@ -53,10 +53,11 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="402dp"
-        android:layout_height="71dp"
+        android:layout_width="404dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +67,7 @@
         <ImageView
             android:id="@+id/interactions"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             app:srcCompat="@drawable/interactions" />
 
@@ -81,7 +82,7 @@
         <ImageView
             android:id="@+id/profile"
             android:layout_width="wrap_content"
-            android:layout_height="46dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             app:srcCompat="@drawable/profile" />
     </LinearLayout>
@@ -109,21 +110,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/n1" />
+                app:srcCompat="@drawable/n2" />
 
             <ImageView
                 android:id="@+id/imageView8"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/n2" />
+                app:srcCompat="@drawable/n6" />
 
             <ImageView
                 android:id="@+id/imageView9"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/n4" />
+                app:srcCompat="@drawable/n1" />
 
             <ImageView
                 android:id="@+id/imageView10"
@@ -144,7 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="245dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/n6" />
+                app:srcCompat="@drawable/n4" />
         </LinearLayout>
     </ScrollView>
 

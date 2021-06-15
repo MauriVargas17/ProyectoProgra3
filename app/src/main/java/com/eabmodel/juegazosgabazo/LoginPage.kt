@@ -1,6 +1,5 @@
 package com.eabmodel.juegazosgabazo
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -29,13 +28,14 @@ class LoginPage : AppCompatActivity() {
 
         loginButton?.setOnClickListener {
             if(dbController.verifyUser(username.text.toString(), password.text.toString(), 0)){
-                val intent = Intent(this, MainPage::class.java)
-                val user = User(username.text.toString(), password.text.toString())
+
+                val intent = Intent(this, Shopwindow::class.java)
+                val user = dbController.verifyUser(username.text.toString(), password.text.toString())
                 val userJson = gson.toJson(user)
                 intent.putExtra("user",userJson)
                 startActivity(intent)
             } else {
-                Toast.makeText(this, "Usuario y/o Contraseña incorrectos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show()
             }
         }
 

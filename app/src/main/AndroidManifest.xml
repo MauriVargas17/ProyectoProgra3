@@ -17,7 +17,17 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainPage">
+        <activity android:name=".Shopwindow"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+        <activity android:name=".Profile"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+
+        <activity android:name=".Interactions"
+            android:windowSoftInputMode="adjustPan">
 
         </activity>
 

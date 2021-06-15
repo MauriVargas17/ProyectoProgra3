@@ -1,15 +1,15 @@
 package com.eabmodel.juegazosgabazo
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 
-class MainPage: AppCompatActivity() {
+class Shopwindow: AppCompatActivity() {
 
     val gson = Gson()
     lateinit var bag: ImageView
@@ -21,16 +21,29 @@ class MainPage: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_page)
-        Log.d("LIFECYCLE", "onCreate MainPage")
+        setContentView(R.layout.shopwindow_page)
+        Log.d("LIFECYCLE", "onCreate Shopwindow")
     init()
-        val bienvenidaJson = intent.getStringExtra("user")
-        val bienvenida: User = gson.fromJson(bienvenidaJson!!)
-        Toast.makeText(this, "Bienvenido ${bienvenida.username}", Toast.LENGTH_SHORT).show()
+        val userJson = intent.getStringExtra("user")
+        val user: User = gson.fromJson(userJson!!)
+        Toast.makeText(this, " ${user.username}, what are you buying today?", Toast.LENGTH_SHORT).show()
 
         bag.setOnClickListener{
-            searchBar.hint = "Hahahahaha"
 
+
+        }
+
+        profile.setOnClickListener{
+            val intent = Intent(this, Profile::class.java)
+            val userJson = gson.toJson(user)
+            intent.putExtra("user",userJson)
+            startActivity(intent)
+        }
+        interactions.setOnClickListener{
+            val intent = Intent(this, Interactions::class.java)
+            val userJson = gson.toJson(user)
+            intent.putExtra("user",userJson)
+            startActivity(intent)
         }
 
 
