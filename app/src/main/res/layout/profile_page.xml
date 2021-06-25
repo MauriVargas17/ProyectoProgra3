@@ -8,10 +8,84 @@
     >
 
     <LinearLayout
+        android:id="@+id/selector"
+        android:layout_width="404dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/interactions"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/cart" />
+
+        <ImageView
+            android:id="@+id/bag"
+            android:layout_width="133dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="#002B2B2B"
+            app:srcCompat="@drawable/bag" />
+
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="149dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/profile" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="397dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/plus"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            app:srcCompat="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:fontFamily="@font/covesb"
+            android:text="       Profile"
+            android:textColor="@color/white"
+            android:textSize="35sp" />
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:fontFamily="@font/covesb"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="35sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="407dp"
         android:layout_height="136dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -257,86 +331,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:id="@+id/selection"
-        android:layout_width="404dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraint2">
-
-        <ImageView
-            android:id="@+id/interactions"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/interactions" />
-
-        <ImageView
-            android:id="@+id/bag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#002B2B2B"
-            app:srcCompat="@drawable/bag" />
-
-        <ImageView
-            android:id="@+id/profile"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/profile" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/topBar"
-        android:layout_width="397dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/plus"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/plus" />
-
-        <EditText
-            android:id="@+id/search"
-            android:layout_width="201dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawableRight="@drawable/ic_action_search"
-            android:ems="10"
-            android:fontFamily="@font/covesl"
-            android:hint="Explore"
-            android:inputType="textPersonName"
-            android:outlineAmbientShadowColor="@color/white"
-            android:outlineSpotShadowColor="@color/white"
-            android:shadowColor="@color/white"
-            android:textColor="@color/white"
-            android:textColorHighlight="@color/white"
-            android:textColorHint="@color/white"
-            android:textColorLink="@color/white" />
-
-        <ImageView
-            android:id="@+id/cart"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/cart" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

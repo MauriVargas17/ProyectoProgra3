@@ -15,9 +15,12 @@ class Interactions: AppCompatActivity() {
     lateinit var bag: ImageView
     lateinit var interactions: ImageView
     lateinit var profile: ImageView
+    /*
     lateinit var plus: ImageView
     lateinit var cart: ImageView
     lateinit var searchBar: EditText
+
+     */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,9 +53,12 @@ class Interactions: AppCompatActivity() {
         bag = findViewById(R.id.bag)
         interactions = findViewById(R.id.interactions)
         profile = findViewById(R.id.profile)
+        /*
         plus = findViewById(R.id.plus)
         cart = findViewById(R.id.cart)
         searchBar = findViewById(R.id.search)
+
+         */
     }
 
     override fun onStart() {

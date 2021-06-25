@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 
@@ -15,9 +16,13 @@ class Shopwindow: AppCompatActivity() {
     lateinit var bag: ImageView
     lateinit var interactions: ImageView
     lateinit var profile: ImageView
+    /*
     lateinit var plus: ImageView
     lateinit var cart: ImageView
     lateinit var searchBar: EditText
+
+     */
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,12 +31,9 @@ class Shopwindow: AppCompatActivity() {
     init()
         val userJson = intent.getStringExtra("user")
         val user: User = gson.fromJson(userJson!!)
-        Toast.makeText(this, " ${user.username}, what are you buying today?", Toast.LENGTH_SHORT).show()
-
-        bag.setOnClickListener{
+        //Toast.makeText(this, " ${user.username}, what are you buying today?", Toast.LENGTH_SHORT).show()
 
 
-        }
 
         profile.setOnClickListener{
             val intent = Intent(this, Profile::class.java)
@@ -54,9 +56,13 @@ class Shopwindow: AppCompatActivity() {
         bag = findViewById(R.id.bag)
         interactions = findViewById(R.id.interactions)
         profile = findViewById(R.id.profile)
+        /*
         plus = findViewById(R.id.plus)
         cart = findViewById(R.id.cart)
         searchBar = findViewById(R.id.search)
+
+         */
+
     }
 
     override fun onStart() {

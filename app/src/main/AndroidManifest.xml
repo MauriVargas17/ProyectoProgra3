@@ -9,31 +9,24 @@
         android:roundIcon="@mipmap/ic_jgicon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JuegazosGabazo">
-        <activity android:name=".LoginPage">
+        <activity android:name=".LoginPage"></activity>
+        <activity android:name=".SplashPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Shopwindow"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
-        <activity android:name=".Profile"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
-
-        <activity android:name=".Interactions"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
-
-        <activity android:name=".RegisterPage">
-
-        </activity>
+        <activity
+            android:name=".Shopwindow"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity
+            android:name=".Profile"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity
+            android:name=".Interactions"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".RegisterPage"></activity>
     </application>
 
 </manifest>
