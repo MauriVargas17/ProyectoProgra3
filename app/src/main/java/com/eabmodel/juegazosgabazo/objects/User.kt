@@ -1,4 +1,4 @@
-package com.eabmodel.juegazosgabazo
+package com.eabmodel.juegazosgabazo.objects
 
 import com.google.gson.annotations.Expose
 

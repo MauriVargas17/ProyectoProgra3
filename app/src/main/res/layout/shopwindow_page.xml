@@ -13,37 +13,35 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@id/topBar"
         app:layout_constraintTop_toBottomOf="@id/topBar">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/nintendo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:srcCompat="@drawable/nin" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/xbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:srcCompat="@drawable/xbx" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/steam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:srcCompat="@drawable/stm" />
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/ps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -130,64 +128,29 @@
             app:srcCompat="@drawable/profile" />
     </LinearLayout>
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="414dp"
-        android:layout_height="543dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewShopwindow"
+        android:layout_width="413dp"
+        android:layout_height="526dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/selector"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/n2" />
-
-            <ImageView
-                android:id="@+id/imageView8"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/n6" />
-
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/n1" />
-
-            <ImageView
-                android:id="@+id/imageView10"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/n3" />
-
-            <ImageView
-                android:id="@+id/imageView11"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/n5" />
-
-            <ImageView
-                android:id="@+id/imageView12"
-                android:layout_width="match_parent"
-                android:layout_height="245dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/n4" />
-        </LinearLayout>
-    </ScrollView>
+    <TextView
+        android:id="@+id/titleCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:fontFamily="@font/covesl"
+        android:text="  Most Popular"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewShopwindow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categories" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

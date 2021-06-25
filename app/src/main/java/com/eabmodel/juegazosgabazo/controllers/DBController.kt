@@ -1,12 +1,16 @@
-package com.eabmodel.juegazosgabazo
+package com.eabmodel.juegazosgabazo.controllers
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.provider.BaseColumns
+import android.util.Log
+import com.eabmodel.juegazosgabazo.R
+import com.eabmodel.juegazosgabazo.objects.Product
+import com.eabmodel.juegazosgabazo.objects.User
 
-class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 2)  {
+class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 3)  {
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL("CREATE TABLE Users (${BaseColumns._ID} INTEGER PRIMARY KEY, Username TEXT, Password TEXT, Name TEXT)")
@@ -14,8 +18,83 @@ class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 2
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db?.execSQL("ALTER TABLE Users ADD COLUMN Funds Double")
+       // db?.execSQL("ALTER TABLE Users ADD COLUMN Funds Double")
+        db?.execSQL("CREATE TABLE Products (${BaseColumns._ID} INTEGER PRIMARY KEY, Title TEXT, Seller TEXT, Platform TEXT, Type TEXT, Description LONGTEXT, Price Double, Image Int)")
+
     }
+
+    /**
+     * Products DB
+     */
+
+    fun createProduct(title: String, seller: String, platform: String, type: String, description: String, price: Double, image: Int): Boolean{
+        val columns = ContentValues()
+        columns.put("Title", title)
+        columns.put("Seller", seller)
+        columns.put("Platform", platform)
+        columns.put("Type", type)
+        columns.put("Description", description)
+        columns.put("Price", price)
+        columns.put("Image", image)
+        writableDatabase.insert("Products", null, columns)
+        return true
+    }
+
+    fun orderProductsByPlatform(platform: String): List<Product> {
+
+        val cursor = readableDatabase.rawQuery("SELECT * FROM Products WHERE Platform = \"$platform\"", arrayOf())
+        val listOfProducts = mutableListOf<Product>()
+        while(cursor.moveToNext()) {
+            val product= Product(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getDouble(6), cursor.getInt(7))
+            listOfProducts.add(product)
+        }
+        Log.d("DBProducts", "Returning list filtered according to platform")
+        return listOfProducts
+
+    }
+
+    fun orderProductsByPrice(): List<Product> {
+
+        val cursor = readableDatabase.rawQuery("SELECT * FROM Products ORDER BY Price ASC", arrayOf())
+        val listOfProducts = mutableListOf<Product>()
+        while(cursor.moveToNext()) {
+            val product= Product(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getDouble(6), cursor.getInt(7))
+            listOfProducts.add(product)
+        }
+
+        return listOfProducts
+
+    }
+
+    fun orderProductsByTitle(): List<Product> {
+
+        val cursor = readableDatabase.rawQuery("SELECT * FROM Products ORDER BY Title DESC", arrayOf())
+        val listOfProducts = mutableListOf<Product>()
+        while(cursor.moveToNext()) {
+            val product= Product(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getDouble(6), cursor.getInt(7))
+            listOfProducts.add(product)
+        }
+
+        return listOfProducts
+
+    }
+
+    fun deleteProduct(title: String) {
+        writableDatabase.delete("Products", "Title = \"$title\"", arrayOf())
+    }
+
+    fun deleteAllProducts(): Boolean {
+        val cursor = readableDatabase.rawQuery("SELECT * FROM Products", arrayOf())
+        val listOfProducts = mutableListOf<Product>()
+        while(cursor.moveToNext()) {
+            val product= Product(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getDouble(6), cursor.getInt(7))
+            deleteProduct(product.title)
+        }
+        return true
+    }
+    /**
+     * Users DB
+     */
 
     fun createUser(username: String, password: String, name: String): Boolean {
         if (!verifyUserExistance(username, password, 0)) {

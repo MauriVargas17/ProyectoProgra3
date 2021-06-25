@@ -4,11 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.eabmodel.juegazosgabazo.controllers.SPController
+import com.eabmodel.juegazosgabazo.objects.User
 import com.google.gson.Gson
 
 class Profile: AppCompatActivity() {
@@ -27,6 +27,7 @@ class Profile: AppCompatActivity() {
     lateinit var username: TextView
     lateinit var totalBalance: TextView
     lateinit var logoutButton: View
+    lateinit var spController: SPController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,12 +39,14 @@ class Profile: AppCompatActivity() {
         nameLastname.text = " ${user.name}"
         username.text = "  ${user.username}"
         totalBalance.text = "   ${user.funds.toString()}"
+        spController = SPController()
 
         bag.setOnClickListener{
             val intent = Intent(this, Shopwindow::class.java)
             val userJson = gson.toJson(user)
             intent.putExtra("user",userJson)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
 
         interactions.setOnClickListener{
@@ -51,11 +54,14 @@ class Profile: AppCompatActivity() {
             val userJson = gson.toJson(user)
             intent.putExtra("user",userJson)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
 
         logoutButton.setOnClickListener {
             val intent = Intent(this, LoginPage::class.java)
+            spController.deleteUser(this)
             startActivity(intent)
+
         }
 
 

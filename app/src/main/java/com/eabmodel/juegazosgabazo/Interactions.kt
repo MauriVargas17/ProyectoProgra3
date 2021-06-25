@@ -3,10 +3,10 @@ package com.eabmodel.juegazosgabazo
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.eabmodel.juegazosgabazo.objects.User
 import com.google.gson.Gson
 
 class Interactions: AppCompatActivity() {
@@ -15,12 +15,7 @@ class Interactions: AppCompatActivity() {
     lateinit var bag: ImageView
     lateinit var interactions: ImageView
     lateinit var profile: ImageView
-    /*
-    lateinit var plus: ImageView
-    lateinit var cart: ImageView
-    lateinit var searchBar: EditText
-
-     */
+    lateinit var textPrueba: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,12 +25,20 @@ class Interactions: AppCompatActivity() {
         val userJson = intent.getStringExtra("user")
         val user: User = gson.fromJson(userJson!!)
 
+        if (TemporaryStorage.cart.isEmpty()){
+            textPrueba.text = "Your cart is empty!"
+        } else {
+            textPrueba.text = TemporaryStorage.cart.toString()
+
+        }
+
 
         bag.setOnClickListener {
             val intent = Intent(this, Shopwindow::class.java)
             val userJson = gson.toJson(user)
             intent.putExtra("user",userJson)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 
         }
 
@@ -44,6 +47,7 @@ class Interactions: AppCompatActivity() {
             val userJson = gson.toJson(user)
             intent.putExtra("user", userJson)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
 
 
@@ -53,12 +57,7 @@ class Interactions: AppCompatActivity() {
         bag = findViewById(R.id.bag)
         interactions = findViewById(R.id.interactions)
         profile = findViewById(R.id.profile)
-        /*
-        plus = findViewById(R.id.plus)
-        cart = findViewById(R.id.cart)
-        searchBar = findViewById(R.id.search)
-
-         */
+        textPrueba = findViewById(R.id.textView2)
     }
 
     override fun onStart() {

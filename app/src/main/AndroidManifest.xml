@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.eabmodel.juegazosgabazo">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -9,7 +10,9 @@
         android:roundIcon="@mipmap/ic_jgicon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JuegazosGabazo">
-        <activity android:name=".LoginPage"></activity>
+        <activity android:name=".ShopwindowAdapter"></activity>
+
+        <activity android:name=".LoginPage" />
         <activity android:name=".SplashPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,14 +22,14 @@
         </activity>
         <activity
             android:name=".Shopwindow"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Profile"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Interactions"
-            android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name=".RegisterPage"></activity>
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".RegisterPage" />
     </application>
 
 </manifest>
