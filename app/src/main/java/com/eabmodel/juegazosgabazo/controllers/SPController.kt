@@ -21,6 +21,11 @@ class SPController {
         editor.commit()
     }
 
+    fun updateUser(context: Context, user: User?){
+        deleteUser(context)
+        saveUser(context, user)
+    }
+
     fun getUser(context: Context): User?{
         val sharedPreferences = context.getSharedPreferences("SPUsuario", MODE_PRIVATE)
         if (sharedPreferences.contains(KEY_USER)){

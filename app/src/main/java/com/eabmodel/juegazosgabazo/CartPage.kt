@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.eabmodel.juegazosgabazo.adapters.CartAdapter
+import com.eabmodel.juegazosgabazo.controllers.DBController
 import com.eabmodel.juegazosgabazo.objects.Product
 import com.eabmodel.juegazosgabazo.objects.User
 import com.google.gson.Gson
@@ -23,6 +24,7 @@ class CartPage: AppCompatActivity() {
     lateinit var interactions: ImageView
     lateinit var profile: ImageView
     lateinit var emptyCartText: TextView
+    lateinit var dbController: DBController
     lateinit var adapter: CartAdapter
     lateinit var recyclerViewCart: RecyclerView
     lateinit var listOfProducts: List<Product>
@@ -39,6 +41,9 @@ class CartPage: AppCompatActivity() {
         totalAmount.text = "-"
         val userJson = intent.getStringExtra("user")
         val user: User = gson.fromJson(userJson!!)
+        var userActive: User = dbController.verifyUser(user.username, user.password)!!
+        user.funds = userActive.funds
+
 
 
         if (listOfProducts.isEmpty()){
@@ -77,10 +82,14 @@ class CartPage: AppCompatActivity() {
         continueButton.setOnClickListener{
             if (user.funds >= sum && sum > 0.00){
                 user.funds -= sum
+                dbController.deductFunds(user, sum)
                 listOfProducts.forEach {
                     TemporaryStorage.cart.remove(it)
                 }
+
+                checkout.visibility = View.INVISIBLE
                 Toast.makeText(this, "Successful purchase!", Toast.LENGTH_SHORT).show()
+
             } else if(user.funds < sum) {
                 Toast.makeText(this, "Not enough funds", Toast.LENGTH_SHORT).show()
             }
@@ -118,6 +127,7 @@ class CartPage: AppCompatActivity() {
         listOfProducts = TemporaryStorage.cart
         checkout = findViewById<ConstraintLayout>(R.id.checkout)
         continueButton = findViewById(R.id.continueButton)
+        dbController = DBController(this)
     }
 
     override fun onStart() {

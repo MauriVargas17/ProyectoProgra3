@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.eabmodel.juegazosgabazo.controllers.DBController
+import com.eabmodel.juegazosgabazo.controllers.SPController
 import com.eabmodel.juegazosgabazo.objects.User
 import com.google.gson.Gson
 
@@ -25,6 +26,7 @@ class AddFundsPage : AppCompatActivity() {
     lateinit var bnbButton: ImageView
     lateinit var amountToBeAdded: TextView
     lateinit var checkPassword: TextView
+    lateinit var spController: SPController
     var methodSelected: Boolean = false
 
     @SuppressLint("ResourceAsColor")
@@ -35,9 +37,13 @@ class AddFundsPage : AppCompatActivity() {
         init()
         val userJson = intent.getStringExtra("user")
         val user: User = gson.fromJson(userJson!!)
+        var userActive: User = dbController.verifyUser(user.username, user.password)!!
+        user.funds = userActive.funds
         nameLastname.text = " ${user.name}"
         username.text = "  ${user.username}"
         totalBalance.text = "   ${user.funds.toString()}"
+
+
 
         visaButton.setOnClickListener {
             methodSelected = true
@@ -76,6 +82,7 @@ class AddFundsPage : AppCompatActivity() {
                 dbController.addFunds(user, amountToBeAdded.text.toString().toDouble())
                 totalBalance.text = "   ${user.funds.toString()}"
                 Toast.makeText(this, "Funds added successfully!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "You need to Log In again to activate your new funds", Toast.LENGTH_LONG).show()
             }
 
 
@@ -86,7 +93,7 @@ class AddFundsPage : AppCompatActivity() {
     }
 
     fun init(){
-
+        spController = SPController()
         nameLastname = findViewById(R.id.name)
         username = findViewById(R.id.username)
         totalBalance = findViewById(R.id.funds)

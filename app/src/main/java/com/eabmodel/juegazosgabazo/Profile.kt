@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.eabmodel.juegazosgabazo.controllers.DBController
 import com.eabmodel.juegazosgabazo.controllers.SPController
 import com.eabmodel.juegazosgabazo.objects.User
 import com.google.gson.Gson
@@ -23,6 +24,8 @@ class Profile: AppCompatActivity() {
     lateinit var totalBalance: TextView
     lateinit var logoutButton: View
     lateinit var spController: SPController
+    lateinit var dbController: DBController
+    lateinit var settings: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +34,14 @@ class Profile: AppCompatActivity() {
         init()
         val userJson = intent.getStringExtra("user")
         val user: User = gson.fromJson(userJson!!)
+        var userActive: User = dbController.verifyUser(user.username, user.password)!!
+        user.funds = userActive.funds
         nameLastname.text = " ${user.name}"
         username.text = "  ${user.username}"
         totalBalance.text = "   ${user.funds.toString()}"
-        spController = SPController()
+
+
+
 
 
         bag.setOnClickListener{
@@ -67,11 +74,20 @@ class Profile: AppCompatActivity() {
             startActivity(intent)
         }
 
+        settings.setOnClickListener{
+            val intent = Intent(this, Settings::class.java)
+            val userJson = gson.toJson(user)
+            intent.putExtra("user",userJson)
+            startActivity(intent)
+
+        }
 
 
     }
 
     fun init(){
+        spController = SPController()
+        dbController = DBController(this)
         bag = findViewById(R.id.bag)
         interactions = findViewById(R.id.interactions)
         profile = findViewById(R.id.profile)
@@ -80,6 +96,7 @@ class Profile: AppCompatActivity() {
         totalBalance = findViewById(R.id.funds)
         logoutButton = findViewById(R.id.logoutButton)
         addFunds = findViewById(R.id.addFundsView)
+        settings = findViewById(R.id.continueButton)
     }
 
     override fun onStart() {

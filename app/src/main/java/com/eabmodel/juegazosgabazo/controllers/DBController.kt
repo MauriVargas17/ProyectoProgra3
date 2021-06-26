@@ -10,16 +10,19 @@ import com.eabmodel.juegazosgabazo.R
 import com.eabmodel.juegazosgabazo.objects.Product
 import com.eabmodel.juegazosgabazo.objects.User
 
-class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 3)  {
+class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 4)  {
 
     override fun onCreate(db: SQLiteDatabase?) {
-        db?.execSQL("CREATE TABLE Users (${BaseColumns._ID} INTEGER PRIMARY KEY, Username TEXT, Password TEXT, Name TEXT)")
+        db?.execSQL("CREATE TABLE Users (${BaseColumns._ID} INTEGER PRIMARY KEY, Username TEXT, Password TEXT, Name TEXT, Funds Double)")
+        db?.execSQL("CREATE TABLE Products (${BaseColumns._ID} INTEGER PRIMARY KEY, Title TEXT, Seller TEXT, Platform TEXT, Type TEXT, Description LONGTEXT, Price Double, Image Int)")
         Log.d("DBController", "onCreate DB")
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
        // db?.execSQL("ALTER TABLE Users ADD COLUMN Funds Double")
-        db?.execSQL("CREATE TABLE Products (${BaseColumns._ID} INTEGER PRIMARY KEY, Title TEXT, Seller TEXT, Platform TEXT, Type TEXT, Description LONGTEXT, Price Double, Image Int)")
+        db?.execSQL("DROP TABLE IF EXISTS " + "Users")
+        db?.execSQL("DROP TABLE IF EXISTS " + "Products")
+        onCreate(db)
         Log.d("DBController", "onUpdate DB")
     }
 
@@ -141,7 +144,7 @@ class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 3
             return null
         }
         cursor.moveToFirst()
-        val user = User(cursor.getString(1), cursor.getString(2), cursor.getString(3))
+        val user = User(cursor.getString(1), cursor.getString(2), cursor.getString(3), "", cursor.getDouble(4))
         cursor.close()
         return user
     }
@@ -152,7 +155,7 @@ class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 3
             return false
         }
         cursor.moveToFirst()
-        val user = User(cursor.getString(1), cursor.getString(2), cursor.getString(3))
+
         cursor.close()
         return true
     }
@@ -163,7 +166,8 @@ class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 3
             return false
         }
         cursor.moveToFirst()
-        //val user = User(cursor.getString(1), cursor.getString(2), cursor.getString(3))
+
+
         cursor.close()
         return true
     }
@@ -194,21 +198,37 @@ class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 3
 
     fun addFunds(user: User, amount: Double){
         val columns = ContentValues()
-        val newAmount = user.funds + amount
+        val funds = verifyUser(user.username, user.password)!!.funds
+        val newAmount = funds + amount
         Log.d("DBController", "new amount: $newAmount")
         Log.d("DBController", "user username: ${user.username}")
         Log.d("DBController", "user password: ${user.password}")
         Log.d("DBController", "user name: ${user.name}")
         Log.d("DBController", "user funds: ${user.funds}")
         columns.put("Funds", newAmount)
+        user.funds = newAmount
         writableDatabase.update("Users", columns, "Username = \"${user.username}\"", arrayOf())
         Log.d("DBController", "user funds: ${user.funds}")
 
     }
 
+    fun deductFunds(user: User, amount: Double){
+        val columns = ContentValues()
+        val funds = verifyUser(user.username, user.password)!!.funds
+        val newAmount = funds - amount
+        Log.d("DBController", "user funds: $funds")
+        columns.put("Funds", newAmount)
+        user.funds = newAmount
+        writableDatabase.update("Users", columns, "Username = \"${user.username}\"", arrayOf())
+        Log.d("DBController", "user funds: ${user.funds}")
+    }
+
     fun changePassword(username: String, password: String, newPassword: String) {
         val columns = ContentValues()
+        val db = this.writableDatabase
         columns.put("Password", newPassword)
-        writableDatabase.update("Users", columns, "Username = \"$username\" AND Password = \"$password\"", arrayOf())
+
+
+        Log.d("DBController", "rows affected: ${db.update("Users", columns, "Username = \"$username\" AND Password = \"$password\"", arrayOf())}")
     }
 }
