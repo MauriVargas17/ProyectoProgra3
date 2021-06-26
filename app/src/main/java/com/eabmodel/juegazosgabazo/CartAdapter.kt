@@ -8,16 +8,15 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-
 import com.eabmodel.juegazosgabazo.objects.Product
 
-class ShopwindowAdapter(val context: Context, var list: List<Product>): RecyclerView.Adapter<ProductViewHolderShopwindow>() {
+class CartAdapter(val context: Context, var list: List<Product>): RecyclerView.Adapter<ProductViewHolderShopwindow>() {
 
     var funMenuOptionClick: ((product: Product) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolderShopwindow {
         val layoutInflater = LayoutInflater.from(context)
-        val itemListView = layoutInflater.inflate(R.layout.product_item_box, parent, false)
+        val itemListView = layoutInflater.inflate(R.layout.product_item_box_cart, parent, false)
         return ProductViewHolderShopwindow(itemListView)
     }
 
@@ -37,7 +36,7 @@ class ShopwindowAdapter(val context: Context, var list: List<Product>): Recycler
     }
 }
 
-class ProductViewHolderShopwindow(itemView: View): RecyclerView.ViewHolder(itemView) {
+class ProductViewHolderCart(itemView: View): RecyclerView.ViewHolder(itemView) {
     val textViewTitulo: TextView = itemView.findViewById(R.id.textViewTitulo)
     val textViewSubtitulo: TextView = itemView.findViewById(R.id.textViewPrecioTotal)
     val imageView: ImageView = itemView.findViewById(R.id.imageView)
@@ -47,6 +46,7 @@ class ProductViewHolderShopwindow(itemView: View): RecyclerView.ViewHolder(itemV
     fun bind(context: Context, product: Product) {
         textViewTitulo.text = product.title
         textViewSubtitulo.text = "$ ${product.price}"
+
         type.text = product.type
         imageView.setImageResource(product.image)
 /*

@@ -33,7 +33,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_add" />
+        app:srcCompat="@android:drawable/ic_menu_delete" />
 
     <TextView
         android:id="@+id/textViewPrecioTotal"
@@ -89,5 +89,4 @@
         app:layout_constraintBottom_toTopOf="@+id/textViewPrecioTotal"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitulo" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

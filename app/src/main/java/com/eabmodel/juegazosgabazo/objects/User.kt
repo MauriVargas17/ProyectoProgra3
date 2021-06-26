@@ -6,4 +6,4 @@ data class User(@Expose val username: String,
                 @Expose val password: String,
                 @Expose val name: String,
                 @Expose val profilePic: String = "@drawable/n2",
-                @Expose val funds: Double = 0.01)
+                @Expose var funds: Double = 0.00)

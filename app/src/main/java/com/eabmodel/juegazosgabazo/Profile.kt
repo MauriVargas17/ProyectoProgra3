@@ -41,6 +41,7 @@ class Profile: AppCompatActivity() {
         totalBalance.text = "   ${user.funds.toString()}"
         spController = SPController()
 
+
         bag.setOnClickListener{
             val intent = Intent(this, Shopwindow::class.java)
             val userJson = gson.toJson(user)

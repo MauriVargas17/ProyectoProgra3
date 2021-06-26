@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.eabmodel.juegazosgabazo.objects.Product
-import com.eabmodel.juegazosgabazo.objects.User
 import com.google.gson.Gson
 
 
@@ -24,7 +23,7 @@ class ProductPage : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_product_page)
+        setContentView(R.layout.product_page)
         init()
         val userJson = intent.getStringExtra("user")
 
@@ -51,7 +50,7 @@ class ProductPage : AppCompatActivity() {
     }
 
     fun init(){
-        addButton = findViewById(R.id.addButton)
+        addButton = findViewById(R.id.continueButton)
         titleText = findViewById(R.id.titleText)
         typeProduct = findViewById(R.id.typeProduct)
         platformProduct = findViewById(R.id.platformProduct)

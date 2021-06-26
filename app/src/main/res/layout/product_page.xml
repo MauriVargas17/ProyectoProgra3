@@ -281,7 +281,7 @@
         app:layout_constraintTop_toBottomOf="@+id/scrollView3">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/addButton"
+            android:id="@+id/continueButton"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
@@ -294,7 +294,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <RelativeLayout
-                android:id="@+id/loginButton"
+                android:id="@+id/continueButtonBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 

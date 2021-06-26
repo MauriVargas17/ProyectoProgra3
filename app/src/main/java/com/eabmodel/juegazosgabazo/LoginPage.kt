@@ -12,6 +12,7 @@ import com.eabmodel.juegazosgabazo.controllers.SPController
 import com.google.gson.Gson
 
 
+
 class LoginPage : AppCompatActivity() {
 
     val dbController = DBController(this)
@@ -70,7 +71,7 @@ class LoginPage : AppCompatActivity() {
     fun initViews(){
         username = findViewById(R.id.username)
         password = findViewById(R.id.password)
-        loginButton = findViewById(R.id.loginButton)
+        loginButton = findViewById(R.id.continueButtonBox)
         registerText = findViewById(R.id.register)
     }
 

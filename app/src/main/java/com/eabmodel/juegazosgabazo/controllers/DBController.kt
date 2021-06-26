@@ -163,7 +163,7 @@ class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 3
             return false
         }
         cursor.moveToFirst()
-        val user = User(cursor.getString(1), cursor.getString(2), cursor.getString(3))
+        //val user = User(cursor.getString(1), cursor.getString(2), cursor.getString(3))
         cursor.close()
         return true
     }
