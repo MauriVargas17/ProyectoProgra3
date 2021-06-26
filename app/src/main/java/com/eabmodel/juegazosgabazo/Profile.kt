@@ -17,12 +17,7 @@ class Profile: AppCompatActivity() {
     lateinit var bag: ImageView
     lateinit var interactions: ImageView
     lateinit var profile: ImageView
-    /*
-    lateinit var plus: ImageView
-    lateinit var cart: ImageView
-    lateinit var searchBar: EditText
-
-     */
+    lateinit var addFunds: View
     lateinit var nameLastname: TextView
     lateinit var username: TextView
     lateinit var totalBalance: TextView
@@ -65,6 +60,13 @@ class Profile: AppCompatActivity() {
 
         }
 
+        addFunds.setOnClickListener {
+            val intent = Intent(this, AddFundsPage::class.java)
+            val userJson = gson.toJson(user)
+            intent.putExtra("user",userJson)
+            startActivity(intent)
+        }
+
 
 
     }
@@ -77,6 +79,7 @@ class Profile: AppCompatActivity() {
         username = findViewById(R.id.username)
         totalBalance = findViewById(R.id.funds)
         logoutButton = findViewById(R.id.logoutButton)
+        addFunds = findViewById(R.id.addFundsView)
     }
 
     override fun onStart() {

@@ -11,8 +11,9 @@
         android:roundIcon="@mipmap/ic_jgicon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JuegazosGabazo">
-        <activity android:name=".ProductPage"></activity>
-        <activity android:name=".ShopwindowAdapter" />
+        <activity android:name=".AddFundsPage"></activity>
+        <activity android:name=".ProductPage" />
+        <activity android:name=".adapters.ShopwindowAdapter" />
         <activity android:name=".LoginPage" />
         <activity android:name=".SplashPage">
             <intent-filter>

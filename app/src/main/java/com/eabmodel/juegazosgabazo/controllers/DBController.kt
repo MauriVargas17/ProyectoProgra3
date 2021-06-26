@@ -14,13 +14,13 @@ class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 3
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL("CREATE TABLE Users (${BaseColumns._ID} INTEGER PRIMARY KEY, Username TEXT, Password TEXT, Name TEXT)")
-
+        Log.d("DBController", "onCreate DB")
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
        // db?.execSQL("ALTER TABLE Users ADD COLUMN Funds Double")
         db?.execSQL("CREATE TABLE Products (${BaseColumns._ID} INTEGER PRIMARY KEY, Title TEXT, Seller TEXT, Platform TEXT, Type TEXT, Description LONGTEXT, Price Double, Image Int)")
-
+        Log.d("DBController", "onUpdate DB")
     }
 
     /**
@@ -190,6 +190,20 @@ class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 3
 
     fun deleteUser(username: String) {
         writableDatabase.delete("Users", "Username = \"$username\"", arrayOf())
+    }
+
+    fun addFunds(user: User, amount: Double){
+        val columns = ContentValues()
+        val newAmount = user.funds + amount
+        Log.d("DBController", "new amount: $newAmount")
+        Log.d("DBController", "user username: ${user.username}")
+        Log.d("DBController", "user password: ${user.password}")
+        Log.d("DBController", "user name: ${user.name}")
+        Log.d("DBController", "user funds: ${user.funds}")
+        columns.put("Funds", newAmount)
+        writableDatabase.update("Users", columns, "Username = \"${user.username}\"", arrayOf())
+        Log.d("DBController", "user funds: ${user.funds}")
+
     }
 
     fun changePassword(username: String, password: String, newPassword: String) {
