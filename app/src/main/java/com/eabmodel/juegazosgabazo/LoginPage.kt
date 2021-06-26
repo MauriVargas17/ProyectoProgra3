@@ -30,7 +30,7 @@ class LoginPage : AppCompatActivity() {
         initViews()
        spController = SPController()
 
-        loginButton?.setOnClickListener {
+        loginButton.setOnClickListener {
             if(dbController.verifyUser(username.text.toString(), password.text.toString(), 0)){
 
                 val intent = Intent(this, Shopwindow::class.java)

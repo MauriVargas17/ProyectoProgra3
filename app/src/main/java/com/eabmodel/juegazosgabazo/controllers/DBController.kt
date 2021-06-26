@@ -40,6 +40,19 @@ class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 3
         return true
     }
 
+    fun searchProduct(search: String): List<Product> {
+
+        val cursor = readableDatabase.rawQuery("SELECT * FROM Products WHERE Title LIKE \"$search%\"", arrayOf())
+        val listOfProducts = mutableListOf<Product>()
+        while(cursor.moveToNext()) {
+            val product= Product(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getDouble(6), cursor.getInt(7))
+            listOfProducts.add(product)
+        }
+
+        return listOfProducts
+
+    }
+
     fun orderProductsByPlatform(platform: String): List<Product> {
 
         val cursor = readableDatabase.rawQuery("SELECT * FROM Products WHERE Platform = \"$platform\"", arrayOf())
@@ -68,7 +81,20 @@ class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 3
 
     fun orderProductsByTitle(): List<Product> {
 
-        val cursor = readableDatabase.rawQuery("SELECT * FROM Products ORDER BY Title DESC", arrayOf())
+        val cursor = readableDatabase.rawQuery("SELECT * FROM Products ORDER BY Title ASC", arrayOf())
+        val listOfProducts = mutableListOf<Product>()
+        while(cursor.moveToNext()) {
+            val product= Product(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getDouble(6), cursor.getInt(7))
+            listOfProducts.add(product)
+        }
+
+        return listOfProducts
+
+    }
+
+    fun orderProductsByType(): List<Product> {
+
+        val cursor = readableDatabase.rawQuery("SELECT * FROM Products ORDER BY Type ASC", arrayOf())
         val listOfProducts = mutableListOf<Product>()
         while(cursor.moveToNext()) {
             val product= Product(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getDouble(6), cursor.getInt(7))

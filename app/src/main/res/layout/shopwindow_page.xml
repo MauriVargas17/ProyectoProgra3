@@ -61,14 +61,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/plus"
+            android:id="@+id/logoJG"
             android:layout_width="40dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:srcCompat="@drawable/logo" />
 
         <EditText
-            android:id="@+id/search"
+            android:id="@+id/explore"
             android:layout_width="201dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -86,7 +86,7 @@
             android:textColorLink="@color/white" />
 
         <ImageView
-            android:id="@+id/cart"
+            android:id="@+id/searchButton"
             android:layout_width="38dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -139,15 +139,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/titleCategory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
-        android:fontFamily="@font/covesl"
-        android:text="  Most Popular"
-        android:textColor="@color/white"
-        android:textSize="17sp"
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="370dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerViewShopwindow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

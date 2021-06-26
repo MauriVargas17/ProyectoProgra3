@@ -9,11 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.Resource
 import com.eabmodel.juegazosgabazo.objects.Product
 
-class ShopwindowAdapter(val context: Context, val list: List<Product>): RecyclerView.Adapter<ProductViewHolder>() {
+class ShopwindowAdapter(val context: Context, var list: List<Product>): RecyclerView.Adapter<ProductViewHolder>() {
 
     var funMenuOptionClick: ((product: Product) -> Unit)? = null
 
@@ -44,11 +42,12 @@ class ProductViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     val textViewSubtitulo: TextView = itemView.findViewById(R.id.textViewPrecioTotal)
     val imageView: ImageView = itemView.findViewById(R.id.imageView)
     val imageButton: ImageButton = itemView.findViewById(R.id.textViewCantidad)
+    val type: TextView = itemView.findViewById(R.id.type)
 
     fun bind(context: Context, product: Product) {
         textViewTitulo.text = product.title
         textViewSubtitulo.text = "$ ${product.price}"
-
+        type.text = product.type
         imageView.setImageResource(product.image)
 /*
         Glide.with(context)

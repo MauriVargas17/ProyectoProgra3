@@ -54,7 +54,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/plus"
+            android:id="@+id/logoJG"
             android:layout_width="40dp"
             android:layout_height="match_parent"
             android:layout_weight="0.3"
