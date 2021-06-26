@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".ProductPage">
+
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="376dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/logoJG"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:background="@drawable/border"
+            app:srcCompat="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:fontFamily="@font/covesb"
+            android:gravity="center"
+            android:text="Product"
+
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="19dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            app:srcCompat="@drawable/share" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="412dp"
+        android:layout_height="278dp"
+        android:layout_marginTop="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topBar">
+
+        <ImageView
+            android:id="@+id/imageProduct"
+            android:layout_width="168dp"
+            android:layout_height="246dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/por3" />
+
+        <TextView
+            android:id="@+id/titleText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="18dp"
+            android:layout_weight="0.3"
+            android:fontFamily="@font/covesl"
+            android:text="Type:"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/typeProduct"
+            app:layout_constraintStart_toEndOf="@+id/imageProduct"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/typeProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="0.3"
+            android:fontFamily="@font/covesb"
+            android:text="Key"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/titleText2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/titleText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="18dp"
+            android:layout_weight="0.3"
+            android:fontFamily="@font/covesl"
+            android:text="Platform:"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/platformProduct"
+            app:layout_constraintStart_toEndOf="@+id/imageProduct"
+            app:layout_constraintTop_toBottomOf="@+id/titleText2" />
+
+        <TextView
+            android:id="@+id/platformProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="13dp"
+            android:layout_weight="0.3"
+            android:fontFamily="@font/covesb"
+            android:text="Nintendo"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/titleText3"
+            app:layout_constraintTop_toBottomOf="@+id/typeProduct" />
+
+        <TextView
+            android:id="@+id/titleText4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="0.3"
+            android:fontFamily="@font/covesl"
+            android:text="Seller:"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/sellerProduct"
+            app:layout_constraintStart_toEndOf="@+id/imageProduct"
+            app:layout_constraintTop_toBottomOf="@+id/titleText3" />
+
+        <TextView
+            android:id="@+id/sellerProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_weight="0.3"
+            android:fontFamily="@font/covesb"
+            android:text="Gamer_codes"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/titleText4"
+            app:layout_constraintTop_toBottomOf="@+id/titleText3" />
+
+        <TextView
+            android:id="@+id/titleText5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="25dp"
+            android:layout_weight="0.3"
+            android:fontFamily="@font/covesl"
+            android:text="Price:"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/imageProduct"
+            app:layout_constraintTop_toBottomOf="@+id/titleText4" />
+
+        <TextView
+            android:id="@+id/titleText11"
+            android:layout_width="122dp"
+            android:layout_height="73dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="25dp"
+            android:layout_weight="0.3"
+            android:fontFamily="@font/covesl"
+            android:text="The seller guarantees you'll get the product or your money back. The service is free"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView5"
+            app:layout_constraintTop_toBottomOf="@+id/priceProduct" />
+
+        <TextView
+            android:id="@+id/priceProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="12dp"
+            android:layout_weight="0.3"
+            android:fontFamily="@font/covesb"
+            android:text="59.99"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            app:layout_constraintStart_toEndOf="@+id/titleText5"
+            app:layout_constraintTop_toBottomOf="@+id/sellerProduct" />
+
+        <TextView
+            android:id="@+id/titleText10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="12dp"
+            android:layout_weight="0.3"
+            android:fontFamily="@font/covesb"
+            android:text="$"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:layout_constraintStart_toEndOf="@+id/priceProduct"
+            app:layout_constraintTop_toBottomOf="@+id/sellerProduct" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="62dp"
+            android:layout_height="73dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageProduct"
+            app:layout_constraintTop_toBottomOf="@+id/priceProduct"
+            app:srcCompat="@drawable/safe" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="379dp"
+        android:layout_height="205dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/des"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/covesl"
+
+                android:text="Description"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/descriptionProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/covesb"
+
+                android:text="Here comes the description of the product"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="409dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/addButton"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="1dp"
+            app:cardBackgroundColor="@color/black"
+            app:cardCornerRadius="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RelativeLayout
+                android:id="@+id/loginButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/covesb"
+                    android:text="Add to Cart"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

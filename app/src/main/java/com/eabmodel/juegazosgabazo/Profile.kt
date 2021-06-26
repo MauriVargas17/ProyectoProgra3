@@ -50,7 +50,7 @@ class Profile: AppCompatActivity() {
         }
 
         interactions.setOnClickListener{
-            val intent = Intent(this, Interactions::class.java)
+            val intent = Intent(this, CartPage::class.java)
             val userJson = gson.toJson(user)
             intent.putExtra("user",userJson)
             startActivity(intent)
@@ -72,12 +72,6 @@ class Profile: AppCompatActivity() {
         bag = findViewById(R.id.bag)
         interactions = findViewById(R.id.interactions)
         profile = findViewById(R.id.profile)
-        /*
-        plus = findViewById(R.id.plus)
-        cart = findViewById(R.id.cart)
-        searchBar = findViewById(R.id.search)
-
-         */
         nameLastname = findViewById(R.id.name)
         username = findViewById(R.id.username)
         totalBalance = findViewById(R.id.funds)

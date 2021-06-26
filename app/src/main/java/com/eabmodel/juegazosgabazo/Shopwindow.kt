@@ -2,7 +2,6 @@ package com.eabmodel.juegazosgabazo
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Html
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -77,11 +76,29 @@ class Shopwindow: AppCompatActivity(), AdapterView.OnItemSelectedListener{
         val user: User = gson.fromJson(userJson!!)
         //Toast.makeText(this, " ${user.username}, what are you buying today?", Toast.LENGTH_SHORT).show()
 
+
+        /**
+         * Button to add product to cart FOR PRODUCTPAGE ACTIVITY
+         */
+        /*
         adapter.setOnProductClickListener {
             TemporaryStorage.cart.add(it)
             Toast.makeText(this, " ${it.title} was addded to your Cart", Toast.LENGTH_SHORT).show()
         }
 
+         */
+
+
+        adapter.setOnProductClickListener {
+            val intent = Intent(this, ProductPage::class.java)
+            val productJson = gson.toJson(it)
+            val userJson = gson.toJson(user)
+            intent.putExtra("user",userJson)
+            intent.putExtra("product",productJson)
+            startActivity(intent)
+
+
+        }
 
 
 
@@ -93,7 +110,7 @@ class Shopwindow: AppCompatActivity(), AdapterView.OnItemSelectedListener{
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
         interactions.setOnClickListener{
-            val intent = Intent(this, Interactions::class.java)
+            val intent = Intent(this, CartPage::class.java)
             val userJson = gson.toJson(user)
             intent.putExtra("user",userJson)
             startActivity(intent)

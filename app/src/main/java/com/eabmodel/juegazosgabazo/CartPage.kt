@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.eabmodel.juegazosgabazo.objects.User
 import com.google.gson.Gson
 
-class Interactions: AppCompatActivity() {
+class CartPage: AppCompatActivity() {
 
     val gson = Gson()
     lateinit var bag: ImageView
