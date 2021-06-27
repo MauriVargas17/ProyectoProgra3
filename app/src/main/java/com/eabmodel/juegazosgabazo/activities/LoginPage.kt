@@ -1,4 +1,4 @@
-package com.eabmodel.juegazosgabazo
+package com.eabmodel.juegazosgabazo.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.eabmodel.juegazosgabazo.R
 import com.eabmodel.juegazosgabazo.controllers.DBController
 import com.eabmodel.juegazosgabazo.controllers.SPController
 import com.google.gson.Gson

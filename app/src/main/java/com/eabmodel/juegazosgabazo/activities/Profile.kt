@@ -1,4 +1,4 @@
-package com.eabmodel.juegazosgabazo
+package com.eabmodel.juegazosgabazo.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.eabmodel.juegazosgabazo.*
 import com.eabmodel.juegazosgabazo.controllers.DBController
 import com.eabmodel.juegazosgabazo.controllers.SPController
 import com.eabmodel.juegazosgabazo.objects.User
@@ -25,6 +26,7 @@ class Profile: AppCompatActivity() {
     lateinit var logoutButton: View
     lateinit var spController: SPController
     lateinit var dbController: DBController
+    lateinit var myOrders: View
     lateinit var settings: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,13 +75,22 @@ class Profile: AppCompatActivity() {
             intent.putExtra("user",userJson)
             startActivity(intent)
         }
-
+/*
         settings.setOnClickListener{
             val intent = Intent(this, Settings::class.java)
             val userJson = gson.toJson(user)
             intent.putExtra("user",userJson)
             startActivity(intent)
 
+        }
+
+ */
+
+        myOrders.setOnClickListener {
+            val intent = Intent(this, MyOrdersPage::class.java)
+            val userJson = gson.toJson(user)
+            intent.putExtra("user",userJson)
+            startActivity(intent)
         }
 
 
@@ -97,6 +108,7 @@ class Profile: AppCompatActivity() {
         logoutButton = findViewById(R.id.logoutButton)
         addFunds = findViewById(R.id.addFundsView)
         settings = findViewById(R.id.continueButton)
+        myOrders = findViewById(R.id.myOrdersView)
     }
 
     override fun onStart() {

@@ -11,21 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.eabmodel.juegazosgabazo.R
 import com.eabmodel.juegazosgabazo.objects.Product
 
-class CartAdapter(val context: Context, var list: List<Product>): RecyclerView.Adapter<ProductViewHolderShopwindow>() {
+class CartAdapter(val context: Context, var list: List<Product>): RecyclerView.Adapter<ProductViewHolderCart>() {
 
     var funMenuOptionClick: ((product: Product) -> Unit)? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolderShopwindow {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolderCart {
         val layoutInflater = LayoutInflater.from(context)
         val itemListView = layoutInflater.inflate(R.layout.product_item_box_cart, parent, false)
-        return ProductViewHolderShopwindow(itemListView)
-    }
-
-    override fun onBindViewHolder(holder: ProductViewHolderShopwindow, position: Int) {
-        holder.bind(context, list[position])
-        holder.imageButton.setOnClickListener {
-            funMenuOptionClick?.invoke(list[position])
-        }
+        return ProductViewHolderCart(itemListView)
     }
 
     override fun getItemCount(): Int {
@@ -34,6 +27,13 @@ class CartAdapter(val context: Context, var list: List<Product>): RecyclerView.A
 
     fun setOnProductClickListener(funcion: (product: Product) -> Unit) {
         funMenuOptionClick = funcion
+    }
+
+    override fun onBindViewHolder(holder: ProductViewHolderCart, position: Int) {
+        holder.bind(context, list[position])
+        holder.imageButton.setOnClickListener {
+            funMenuOptionClick?.invoke(list[position])
+        }
     }
 }
 
@@ -47,16 +47,8 @@ class ProductViewHolderCart(itemView: View): RecyclerView.ViewHolder(itemView) {
     fun bind(context: Context, product: Product) {
         textViewTitulo.text = product.title
         textViewSubtitulo.text = "$ ${product.price}"
-
         type.text = product.type
         imageView.setImageResource(product.image)
-/*
-        Glide.with(context)
-            .load(product.image)
-            .centerCrop()
-            .placeholder(R.drawable.ic_hold)
-            .into(imageView)
 
- */
     }
 }

@@ -1,4 +1,4 @@
-package com.eabmodel.juegazosgabazo
+package com.eabmodel.juegazosgabazo.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.eabmodel.juegazosgabazo.*
 import com.eabmodel.juegazosgabazo.adapters.ShopwindowAdapter
 import com.eabmodel.juegazosgabazo.controllers.DBController
 import com.eabmodel.juegazosgabazo.controllers.SPController
@@ -42,8 +43,12 @@ class Shopwindow: AppCompatActivity(), AdapterView.OnItemSelectedListener{
         Log.d("LIFECYCLE", "onCreate Shopwindow")
         init()
 
+
     //android.R.layout.simple_spinner_item GOES AS PARAMETER IN THE FUNCTION BELOW
-        ArrayAdapter.createFromResource(this, R.array.filtering, R.layout.text_view).also { adapterDD ->
+        ArrayAdapter.createFromResource(this,
+            R.array.filtering,
+            R.layout.text_view
+        ).also { adapterDD ->
             adapterDD.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             dropdown.adapter = adapterDD
         }
@@ -58,15 +63,15 @@ class Shopwindow: AppCompatActivity(), AdapterView.OnItemSelectedListener{
          * Products Creation
          */
 
-/*
+        dbController.deleteAllProducts()
         dbController.createProduct("Sea of Thieves", "Sacrifice_shop", "Xbox Live", "Key", "Weigh anchor, hoist the sails, walk the plank, play the hurdy-gurdy? Sea of Thieves is a swashbuckling adventure on the high seas for you, your friends, and a bunch of random people whose ships you can try to plunder.Developed by a seasoned developer Rare, SoT is great fun for anyone with love for pirate's life and badly sung shanties.", 18.35, R.drawable.por2)
         dbController.createProduct("Biomutant", "Games_codes", "Play Station", "Key", "The Tree of Life is dying, and the pollution is spreading all over the world, corrupting and twisting life coming in contact with it. In a landscape ruled by six factions, it falls to a single determined warrior to be the saviour and uniter or the agent of destruction and conquest. Biomutant is a third-person open-world action-RPG set in post-apocalypse world inhabited by sentient anthropomorphic animals.", 42.45, R.drawable.por1)
         dbController.createProduct("Minecraft", "Velonic", "Xbox Live", "Key", "The world is your playground. Minecraft has the creativity factor and the flexibility matched only by playing with LEGO. There is no better game on PC or console to capture the joy of holding the forces of creation in your hand. Whether you choose to explore the boundless world or to create a stronghold and rule over the region, Minecraft supplies you with abilities to do so.", 15.99, R.drawable.por3)
         dbController.createProduct("Resident Evil VILLAGE", "Forestgarden", "Xbox Live", "Key", "Resident Evil: Village is the 8th installment of popular survival horror video game franchise created and released by Capcom. Developers once again decided to realize their newest game using the First Person perspective, which maximizes the immersion and makes the whole experience much more exciting and terrifying. Similarly like it was in the previous Resident Evil game, Resident Evil 8 features very high-quality visuals, thanks to photorealistic graphics. ", 33.91, R.drawable.por4)
         dbController.createProduct("Mario Golf Super Rush", "Nintenshop", "Nintendo", "Key", "Hit the green with up to four players locally* or online** and golf with friends from the Super Mario™ series like Mario, Peach, Yoshi, and more! Modes range from Standard Golf to the energetic Speed Golf and an exciting Golf Adventure. Simple motion or button controls make it easy for both new players and seasoned pros to drive and putt.", 59.99, R.drawable.por5)
-        dbController.createProduct("FIFA 21 Deluxe Edition", "Games_codes", "Play Station", "Key", "FIFA 21 is a football (soccer) sports game developed by EA Vancouver and published by EA Sports. The game is yet another installment of classic football simulation series, dating back to the late nineties of the last century. In FIFA21, the player will once again play as their favorite team, participating in matches with other players through online multiplayer or against the computer offline. The video game offers improvements to its various modes, including FIFA Ultimate Team, Volta, and Career modes. Gameplay mechanics have also been revamped, offering even more intuitive controls. FIFA 21 was received positively by the critics, who praised improved gameplay mechanics, additional players I FUT mode, and demanding Career mode.", 21.50, R.drawable.por6)
+        dbController.createProduct("FIFA 21 Deluxe Edition", "Games_codes", "Play Station", "Key", "FIFA 21 is a football (soccer) sports game developed by EA Vancouver and published by EA Sports. The game is yet another installment of classic football simulation series, dating back to the late nineties of the last century. In FIFA21, the player will once again play as their favorite team, participating in matches with other players through online multiplayer or against the computer offline. The video game offers improvements to its various modes, including FIFA Ultimate Team, Volta, and Career modes. Gameplay mechanics have also been revamped, offering even more intuitive controls. FIFA 21 was received positively by the critics, who praised improved gameplay mechanics, additional players I FUT mode, and demanding Career mode.", 21.51, R.drawable.por6)
 
- */
+
 
 
 
@@ -79,6 +84,16 @@ class Shopwindow: AppCompatActivity(), AdapterView.OnItemSelectedListener{
 
         val userJson = intent.getStringExtra("user")
         val user: User = gson.fromJson(userJson!!)
+
+
+/*
+         dbController.createUser("p", "p", "p")
+        val user = dbController.verifyUser("p", "p")!!
+
+ */
+
+
+
         var userActive: User = dbController.verifyUser(user.username, user.password)!!
         user.funds = userActive.funds
         //Toast.makeText(this, " ${user.username}, what are you buying today?", Toast.LENGTH_SHORT).show()

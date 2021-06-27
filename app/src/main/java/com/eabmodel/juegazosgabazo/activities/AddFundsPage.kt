@@ -1,4 +1,4 @@
-package com.eabmodel.juegazosgabazo
+package com.eabmodel.juegazosgabazo.activities
 
 import android.annotation.SuppressLint
 import android.os.Build
@@ -9,8 +9,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.eabmodel.juegazosgabazo.R
 import com.eabmodel.juegazosgabazo.controllers.DBController
 import com.eabmodel.juegazosgabazo.controllers.SPController
+import com.eabmodel.juegazosgabazo.fromJson
 import com.eabmodel.juegazosgabazo.objects.User
 import com.google.gson.Gson
 
@@ -82,7 +84,7 @@ class AddFundsPage : AppCompatActivity() {
                 dbController.addFunds(user, amountToBeAdded.text.toString().toDouble())
                 totalBalance.text = "   ${user.funds.toString()}"
                 Toast.makeText(this, "Funds added successfully!", Toast.LENGTH_SHORT).show()
-                Toast.makeText(this, "You need to Log In again to activate your new funds", Toast.LENGTH_LONG).show()
+
             }
 
 

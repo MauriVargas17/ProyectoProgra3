@@ -7,14 +7,20 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.provider.BaseColumns
 import android.util.Log
 import com.eabmodel.juegazosgabazo.R
+import com.eabmodel.juegazosgabazo.objects.Order
 import com.eabmodel.juegazosgabazo.objects.Product
 import com.eabmodel.juegazosgabazo.objects.User
+import java.math.BigDecimal
+import java.math.RoundingMode
+import java.sql.Date
+import java.sql.Timestamp
 
-class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 4)  {
+class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 5)  {
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL("CREATE TABLE Users (${BaseColumns._ID} INTEGER PRIMARY KEY, Username TEXT, Password TEXT, Name TEXT, Funds Double)")
         db?.execSQL("CREATE TABLE Products (${BaseColumns._ID} INTEGER PRIMARY KEY, Title TEXT, Seller TEXT, Platform TEXT, Type TEXT, Description LONGTEXT, Price Double, Image Int)")
+        db?.execSQL("CREATE TABLE Orders (${BaseColumns._ID} INTEGER PRIMARY KEY, Username TEXT, Date TEXT,Title TEXT, Seller TEXT, Platform TEXT, Type TEXT, Description LONGTEXT, Price Double, Image Int)")
         Log.d("DBController", "onCreate DB")
     }
 
@@ -22,6 +28,7 @@ class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 4
        // db?.execSQL("ALTER TABLE Users ADD COLUMN Funds Double")
         db?.execSQL("DROP TABLE IF EXISTS " + "Users")
         db?.execSQL("DROP TABLE IF EXISTS " + "Products")
+        db?.execSQL("DROP TABLE IF EXISTS " + "Orders")
         onCreate(db)
         Log.d("DBController", "onUpdate DB")
     }
@@ -199,7 +206,8 @@ class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 4
     fun addFunds(user: User, amount: Double){
         val columns = ContentValues()
         val funds = verifyUser(user.username, user.password)!!.funds
-        val newAmount = funds + amount
+        var newAmount = funds + amount
+        newAmount = BigDecimal(newAmount).setScale(2, RoundingMode.HALF_EVEN).toDouble()
         Log.d("DBController", "new amount: $newAmount")
         Log.d("DBController", "user username: ${user.username}")
         Log.d("DBController", "user password: ${user.password}")
@@ -215,7 +223,8 @@ class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 4
     fun deductFunds(user: User, amount: Double){
         val columns = ContentValues()
         val funds = verifyUser(user.username, user.password)!!.funds
-        val newAmount = funds - amount
+        var newAmount = funds - amount
+        newAmount = BigDecimal(newAmount).setScale(2, RoundingMode.HALF_EVEN).toDouble()
         Log.d("DBController", "user funds: $funds")
         columns.put("Funds", newAmount)
         user.funds = newAmount
@@ -231,4 +240,38 @@ class DBController(context: Context): SQLiteOpenHelper(context, "Users", null, 4
 
         Log.d("DBController", "rows affected: ${db.update("Users", columns, "Username = \"$username\" AND Password = \"$password\"", arrayOf())}")
     }
+
+
+    /**
+     * Orders DB
+     */
+
+    fun createOrder(username: String, date: String, title: String, seller: String, platform: String, type: String, description: String, price: Double, image: Int): Boolean{
+        val columns = ContentValues()
+        columns.put("Username", username)
+        columns.put("Date", date)
+        columns.put("Title", title)
+        columns.put("Seller", seller)
+        columns.put("Platform", platform)
+        columns.put("Type", type)
+        columns.put("Description", description)
+        columns.put("Price", price)
+        columns.put("Image", image)
+        writableDatabase.insert("Orders", null, columns)
+        return true
+    }
+
+    fun orderOrdersByDate(user: User): List<Order> {
+
+        val cursor = readableDatabase.rawQuery("SELECT * FROM Orders WHERE Username = \"${user.username}\" ORDER BY Date ASC", arrayOf())
+        val listOfOrders = mutableListOf<Order>()
+        while(cursor.moveToNext()) {
+            val order = Order(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5),   cursor.getString(6),  cursor.getString(7), cursor.getDouble(8), cursor.getInt(9))
+            listOfOrders.add(order)
+        }
+
+        return listOfOrders
+
+    }
+
 }

@@ -11,12 +11,13 @@
         android:roundIcon="@mipmap/ic_jgicon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JuegazosGabazo">
-        <activity android:name=".Settings"></activity>
-        <activity android:name=".AddFundsPage" />
-        <activity android:name=".ProductPage" />
+        <activity android:name=".activities.MyOrdersPage"></activity>
+        <activity android:name=".activities.Settings" />
+        <activity android:name=".activities.AddFundsPage" />
+        <activity android:name=".activities.ProductPage" />
         <activity android:name=".adapters.ShopwindowAdapter" />
-        <activity android:name=".LoginPage" />
-        <activity android:name=".SplashPage">
+        <activity android:name=".activities.LoginPage" />
+        <activity android:name=".activities.SplashPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,15 +25,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Shopwindow"
+            android:name=".activities.Shopwindow"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Profile"
+            android:name=".activities.Profile"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".CartPage"
+            android:name=".activities.CartPage"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".RegisterPage" />
+        <activity android:name=".activities.RegisterPage" />
     </application>
 
 </manifest>

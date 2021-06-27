@@ -50,13 +50,6 @@ class ProductViewHolderShopwindow(itemView: View): RecyclerView.ViewHolder(itemV
         textViewSubtitulo.text = "$ ${product.price}"
         type.text = product.type
         imageView.setImageResource(product.image)
-/*
-        Glide.with(context)
-            .load(product.image)
-            .centerCrop()
-            .placeholder(R.drawable.ic_hold)
-            .into(imageView)
 
- */
     }
 }

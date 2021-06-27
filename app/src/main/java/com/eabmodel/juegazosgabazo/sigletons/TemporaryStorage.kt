@@ -1,4 +1,4 @@
-package com.eabmodel.juegazosgabazo
+package com.eabmodel.juegazosgabazo.sigletons
 
 import com.eabmodel.juegazosgabazo.objects.Product
 

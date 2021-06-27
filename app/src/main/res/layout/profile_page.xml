@@ -227,7 +227,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView3"
+            android:id="@+id/myOrdersView"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginStart="100dp"
@@ -267,7 +267,7 @@
             app:cardCornerRadius="25dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/cardView3">
+            app:layout_constraintTop_toTopOf="@id/myOrdersView">
 
             <RelativeLayout
                 android:id="@+id/termsNcondButton"

@@ -1,4 +1,4 @@
-package com.eabmodel.juegazosgabazo
+package com.eabmodel.juegazosgabazo.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,11 +11,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.eabmodel.juegazosgabazo.R
 import com.eabmodel.juegazosgabazo.adapters.CartAdapter
 import com.eabmodel.juegazosgabazo.controllers.DBController
+import com.eabmodel.juegazosgabazo.fromJson
 import com.eabmodel.juegazosgabazo.objects.Product
 import com.eabmodel.juegazosgabazo.objects.User
+import com.eabmodel.juegazosgabazo.sigletons.TemporaryStorage
 import com.google.gson.Gson
+import java.math.BigDecimal
+import java.math.RoundingMode
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class CartPage: AppCompatActivity() {
 
@@ -27,7 +34,7 @@ class CartPage: AppCompatActivity() {
     lateinit var dbController: DBController
     lateinit var adapter: CartAdapter
     lateinit var recyclerViewCart: RecyclerView
-    lateinit var listOfProducts: List<Product>
+    lateinit var listOfProducts: MutableList<Product>
     lateinit var totalAmount: TextView
     lateinit var checkout: View
     lateinit var continueButton: View
@@ -74,6 +81,7 @@ class CartPage: AppCompatActivity() {
             adapter.list = listOfProducts
             adapter.notifyDataSetChanged()
             sum -= it.price
+            sum = BigDecimal(sum).setScale(2, RoundingMode.HALF_EVEN).toDouble()
             totalAmount.text = sum.toString()
 
             Toast.makeText(this, " ${it.title} was deleted from your Cart", Toast.LENGTH_SHORT).show()
@@ -81,14 +89,30 @@ class CartPage: AppCompatActivity() {
 
         continueButton.setOnClickListener{
             if (user.funds >= sum && sum > 0.00){
+                Log.d("CART_PAGE", "Continue button pressed")
                 user.funds -= sum
                 dbController.deductFunds(user, sum)
+                var currentDate = LocalDateTime.now()
+                val dateString = currentDate.format(DateTimeFormatter.ISO_LOCAL_DATE).toString()
                 listOfProducts.forEach {
-                    TemporaryStorage.cart.remove(it)
+                    dbController.createOrder(user.username, dateString, it.title, it.seller, it.platform, it.type, it.description, it.price, it.image)
+                }
+                val iteratorTemp = TemporaryStorage.cart.iterator()
+                val iteratorList = listOfProducts.iterator()
+
+                TemporaryStorage.cart.removeAll(listOfProducts)
+                /*
+                while(iteratorTemp.hasNext()) {
+                   // val item = iterator.next()
+                    iteratorTemp.remove()
                 }
 
+                 */
+                sum = 0.0
+                Log.d("CART_PAGE", "empty cart")
                 checkout.visibility = View.INVISIBLE
                 Toast.makeText(this, "Successful purchase!", Toast.LENGTH_SHORT).show()
+
 
             } else if(user.funds < sum) {
                 Toast.makeText(this, "Not enough funds", Toast.LENGTH_SHORT).show()

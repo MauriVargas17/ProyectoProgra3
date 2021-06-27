@@ -1,4 +1,4 @@
-package com.eabmodel.juegazosgabazo
+package com.eabmodel.juegazosgabazo.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.eabmodel.juegazosgabazo.R
+import com.eabmodel.juegazosgabazo.fromJson
 import com.eabmodel.juegazosgabazo.objects.Product
+import com.eabmodel.juegazosgabazo.sigletons.TemporaryStorage
 import com.google.gson.Gson
 
 
