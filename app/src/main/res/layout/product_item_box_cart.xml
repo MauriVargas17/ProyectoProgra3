@@ -20,6 +20,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/textViewPrecioTotal"
         app:layout_constraintEnd_toStartOf="@+id/moreInfo"
+        app:layout_constraintHorizontal_bias="0.024"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
