@@ -25,14 +25,11 @@ class MyOrdersAdapter(val context: Context, var list: List<Order>): RecyclerView
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
 
         holder.bind(context, list[position])
-        /*
+
         holder.imageButton.setOnClickListener {
             funMenuOptionClick?.invoke(list[position])
-
-         */
-
-
         }
+    }
 
     override fun getItemCount(): Int {
        return list.size
@@ -55,7 +52,7 @@ class OrderViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     val textViewTitulo: TextView = itemView.findViewById(R.id.textViewTitulo)
     val textViewSubtitulo: TextView = itemView.findViewById(R.id.textViewPrecioTotal)
     val imageView: ImageView = itemView.findViewById(R.id.imageView)
- //  val imageButton: ImageButton = itemView.findViewById(R.id.moreInfo)
+    val imageButton: ImageButton = itemView.findViewById(R.id.moreInfo)
     val type: TextView = itemView.findViewById(R.id.type)
     val date: TextView = itemView.findViewById(R.id.date)
     val seller: TextView = itemView.findViewById(R.id.seller)
@@ -66,6 +63,7 @@ class OrderViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         type.text = order.type
         date.text = order.date
         seller.text = order.seller
+
         imageView.setImageResource(order.image)
 
     }
