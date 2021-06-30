@@ -75,8 +75,7 @@ class Shopwindow: AppCompatActivity(), AdapterView.OnItemSelectedListener{
         recyclerViewShopwindow.adapter = adapter
         recyclerViewShopwindow.layoutManager = LinearLayoutManager(this)
 
-        val userJson = intent.getStringExtra("user")
-        val user: User = gson.fromJson(userJson!!)
+
 
 
 /*
@@ -84,7 +83,8 @@ class Shopwindow: AppCompatActivity(), AdapterView.OnItemSelectedListener{
         val user = dbController.verifyUser("p", "p")!!
 
  */
-
+        val userJson = intent.getStringExtra("user")
+        val user: User = gson.fromJson(userJson!!)
 
 
         var userActive: User = dbController.verifyUser(user.username, user.password)!!
